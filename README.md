@@ -16,7 +16,7 @@ This PYNQ Overlay contains the below accelerated image processing algorithms.
 
 ## Peripherals
 * OV5640 Camera Board (Waveshare OV5640 or equaivalent)
-* PMOD-Camera adapter ()
+* PMOD-Camera adapter
 * HDMI monitor
 ## Quick Start
 
