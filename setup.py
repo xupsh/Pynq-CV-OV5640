@@ -34,7 +34,7 @@ import shutil
 
 # global variables
 board = os.environ['BOARD']
-repo_board_folder = f'boards/{board}/x-filter'
+repo_board_folder = f'boards/{board}/ov5640'
 board_notebooks_dir = os.environ['PYNQ_JUPYTER_NOTEBOOKS']
 hw_data_files = ['*.bit','*.tcl','*.hwh','*.so','*.bin','*.txt', '*.cpp', '*.h', '*.sh']
 
@@ -50,10 +50,10 @@ def check_env():
 # copy overlays to python package
 def copy_overlays():
     src_ol_dir = os.path.join(repo_board_folder, 'bitstream')
-    if os.path.isdir(os.path.join('/usr/local/lib',os.environ['PYNQ_PYTHON'],'dist-packages/pynq/overlays/x-filter')):
-        shutil.rmtree(os.path.join('/usr/local/lib', os.environ['PYNQ_PYTHON'], 'dist-packages/pynq/overlays/x-filter'))
-    shutil.copytree(src_ol_dir, os.path.join('/usr/local/lib', os.environ['PYNQ_PYTHON'], 'dist-packages/pynq/overlays/x-filter')) #copy overlay
-#    dst_ol_dir = os.path.join('x-filter', 'bitstream')
+    if os.path.isdir(os.path.join('/usr/local/lib',os.environ['PYNQ_PYTHON'],'dist-packages/pynq/overlays/cv_ov5640')):
+        shutil.rmtree(os.path.join('/usr/local/lib', os.environ['PYNQ_PYTHON'], 'dist-packages/pynq/overlays/cv_ov5640'))
+    shutil.copytree(src_ol_dir, os.path.join('/usr/local/lib', os.environ['PYNQ_PYTHON'], 'dist-packages/pynq/overlays/cv_ov5640')) #copy overlay
+#    dst_ol_dir = os.path.join('cv_ov5640', 'bitstream')
 #    copy_tree(src_ol_dir, dst_ol_dir)
 #    hw_data_files.extend([os.path.join("..", dst_ol_dir, f) for f in os.listdir(dst_ol_dir)])
 
@@ -61,7 +61,7 @@ def copy_overlays():
 # copy notebooks to jupyter home
 def copy_notebooks():
     src_nb_dir = os.path.join(repo_board_folder, 'notebooks')
-    dst_nb_dir = os.path.join(board_notebooks_dir, 'x-filter')
+    dst_nb_dir = os.path.join(board_notebooks_dir, 'cv_ov5640')
     if os.path.exists(dst_nb_dir):
         shutil.rmtree(dst_nb_dir)
     copy_tree(src_nb_dir, dst_nb_dir)
@@ -72,10 +72,10 @@ copy_overlays()
 copy_notebooks()
 
 setup(
-    name="pynq-x-filter",
+    name="pynq-cv-ov5640",
     version='1.0',
 #    install_requires=['pynq>=2.3'],
-    url='https://github.com/louisliuwei/pynq_x_filter.git',
+    url='https://github.com/xupsh/Pynq-CV-OV5640.git',
     license='BSD 3-Clause License',
     author="Wei Liu, XUP",
     author_email="weli@xilinx.com",
