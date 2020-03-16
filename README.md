@@ -26,13 +26,14 @@ This PYNQ Overlay contains the below accelerated image processing algorithms.
 Open a terminal on your PYNQ board and run:
 
 ```
-sudo pip3 install --upgrade git+https://github.com/xilinx/pynq-helloworld.git
+sudo pip3 install --upgrade git+https://github.com/xupsh/Pynq-CV-OV5640.git
 ```
 
 or offline install:
 
 ```
-sudo python setup.py install
+sudo pip3 install --upgrade .
+#sudo python setup.py install
 ```
 
 Currently this repository is compatible with [PYNQ image v2.4](http://www.pynq.io/board).

@@ -36,7 +36,13 @@ import shutil
 board = os.environ['BOARD']
 repo_board_folder = f'boards/{board}/ov5640'
 board_notebooks_dir = os.environ['PYNQ_JUPYTER_NOTEBOOKS']
-hw_data_files = ['*.bit','*.tcl','*.hwh','*.so','*.bin','*.txt', '*.cpp', '*.h', '*.sh']
+repo_module_folder = f'ov5640'
+src_nb_dir = os.path.join(repo_board_folder, 'notebooks')
+dst_nb_dir = os.path.join(board_notebooks_dir, 'cv_ov5640')
+
+
+#hw_data_files = ['*.bit','*.tcl','*.hwh','*.so','*.bin','*.txt', '*.cpp', '*.h', '*.sh','*.py']
+hw_data_files = []
 
 
 # check whether board is supported
@@ -53,23 +59,27 @@ def copy_overlays():
     if os.path.isdir(os.path.join('/usr/local/lib',os.environ['PYNQ_PYTHON'],'dist-packages/pynq/overlays/cv_ov5640')):
         shutil.rmtree(os.path.join('/usr/local/lib', os.environ['PYNQ_PYTHON'], 'dist-packages/pynq/overlays/cv_ov5640'))
     shutil.copytree(src_ol_dir, os.path.join('/usr/local/lib', os.environ['PYNQ_PYTHON'], 'dist-packages/pynq/overlays/cv_ov5640')) #copy overlay
-#    dst_ol_dir = os.path.join('cv_ov5640', 'bitstream')
-#    copy_tree(src_ol_dir, dst_ol_dir)
-#    hw_data_files.extend([os.path.join("..", dst_ol_dir, f) for f in os.listdir(dst_ol_dir)])
 
 
 # copy notebooks to jupyter home
 def copy_notebooks():
-    src_nb_dir = os.path.join(repo_board_folder, 'notebooks')
-    dst_nb_dir = os.path.join(board_notebooks_dir, 'cv_ov5640')
     if os.path.exists(dst_nb_dir):
         shutil.rmtree(dst_nb_dir)
     copy_tree(src_nb_dir, dst_nb_dir)
 
+def copy_lib():
+    for f in os.listdir(repo_module_folder):
+        if os.path.exists(os.path.join(dst_nb_dir, f)):
+            os.remove(os.path.join(dst_nb_dir, f))
+        shutil.copy(os.path.join(repo_module_folder, f) ,dst_nb_dir) #copy lib
+#    dst_ol_dir = os.path.join('cv_ov5640', 'bitstream')
+#    copy_tree(src_ol_dir, dst_ol_dir)
+#    hw_data_files.extend([os.path.join("..", dst_ol_dir, f) for f in os.listdir(dst_ol_dir)])
 
 check_env()
 copy_overlays()
 copy_notebooks()
+copy_lib()
 
 setup(
     name="pynq-cv-ov5640",
