@@ -1,7 +1,10 @@
 ## Introduction
 
-In this PYNQ Overlay, picture is captured from an OV5640 camera which is connected to PL side, and several accelerated image processing algorithms are contained in this Overlay, you can choose which algorithm is enabled without downloading a new bitstream. In the example application notebook, you can configure the OV5640 camera and get the captured picture and display it on the notebook. The processed video streaming is displayed on the HDMI monitor which connected to the PL side.
+In this PYNQ Overlay, picture is captured from an OV5640 camera which is connected to PL side, and several accelerated image processing algorithms are contained in this Overlay, you can choose which algorithm is enabled without downloading a new bitstream. 
 ![](./images/Architecture.png)
+
+In the example application notebook, you can configure the OV5640 camera and get the captured picture and display it on the notebook. The processed video streaming is displayed on the HDMI monitor which connected to the PL side.
+![](./boards/Pynq-Z2/ov5640/notebooks/images/SystemDiagram.png)
 
 This PYNQ Overlay contains the below accelerated image processing algorithms.
 
