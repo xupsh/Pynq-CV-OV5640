@@ -1,7 +1,7 @@
 overlay_name := cv_ov5640
 design_name := cv_ov5640
 
-all: block_design bitstream check_timing
+all: block_design bitstream
 	@echo
 	@tput setaf 2 ; echo "Built $(overlay_name) successfully!"; tput sgr0;
 	@echo

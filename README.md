@@ -33,7 +33,6 @@ or offline install:
 
 ```
 sudo pip3 install --upgrade .
-#sudo python setup.py install
 ```
 
 Currently this repository is compatible with [PYNQ image v2.4](http://www.pynq.io/board).
