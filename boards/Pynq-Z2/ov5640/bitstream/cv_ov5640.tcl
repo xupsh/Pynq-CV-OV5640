@@ -43,14 +43,14 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 set list_projs [get_projects -quiet]
 if { $list_projs eq "" } {
-   create_project project_1 myproj -part xc7z020clg400-1
+   create_project cv_ov5640 cv_ov5640 -part xc7z020clg400-1
    set_property BOARD_PART tul.com.tw:pynq-z2:part0:1.0 [current_project]
 }
 
 
 # CHANGE DESIGN NAME HERE
 variable design_name
-set design_name system
+set design_name cv_ov5640
 
 # If you do not already have an existing IP Integrator design open,
 # you can create a design using the following command:
@@ -116,6 +116,14 @@ if { $nRet != 0 } {
    catch {common::send_msg_id "BD_TCL-114" "ERROR" $errMsg}
    return $nRet
 }
+
+set_property  ip_repo_paths  ../../../src/ip [current_project]
+
+update_ip_catalog
+
+add_files -fileset constrs_1 -norecurse cv_ov5640.xdc
+
+import_files -fileset constrs_1 cv_ov5640.xdc
 
 set bCheckIPsPassed 1
 ##################################################################
